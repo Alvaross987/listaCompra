@@ -13,11 +13,17 @@
     <div class="col-sm-8">
 
         {{-- TODO: Datos del producto --}}
-        <p>Nombre del producto:{{$producto[0]}}</p>
-        <p>Categoria:{{$producto[1]}}</p>
-        <p>EStado: Producto actualmente comprado</p>
-        <a class="btn btn-danger">Pendiente de compra</a>
-        <a class="btn btn-warning" href="{{ url('/productos/edit/' . $id ) }}">Editar producto</a>
+        <p>Nombre del producto:{{$producto->nombre}}</p>
+        <p>Categoria:{{$producto->categoria}}</p>
+        @if ($producto->boolean)
+        <p>Estado: Producto actualmente comprado</p>
+        <a class="btn btn-success">Comprado</a>
+        @else
+        <p>Estado: Producto actualmente sin comprar</p>
+        <a class="btn btn-danger">Comprar</a>
+        @endif
+        
+        <a class="btn btn-warning" href="{{ url('/productos/edit/' . $producto->id ) }}">Editar producto</a>
         <a class="btn btn-outline-info" href="{{ action('ProductoController@getIndex') }}">Volver al listado</a>
     </div>
 </div>
