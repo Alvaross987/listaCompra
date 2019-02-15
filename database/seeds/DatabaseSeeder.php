@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Producto;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,7 +18,9 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         self::seedProductos();
-	$this->command->info('Tabla productos inicializada con datos!');
+        $this->command->info('Tabla productos inicializada con datos!');
+        self::seedUsers();
+	    $this->command->info('Tabla Usuarios inicializada con datos!');
     }
 
     private static function seedProductos(){
@@ -32,6 +35,19 @@ class DatabaseSeeder extends Seeder
 
         }
 
+        private static function seedUsers(){
+            User::truncate();
+            User::create([
+                    'name'=>'Usuario1',
+                    'email'=>'usuario1@gmail.com',
+                    'password'=>bcrypt('alumno')
+        ]);
+            User::create([
+                    'name'=>'Usuario2',
+                    'email'=>'usuario2@gmail.com',
+                    'password'=>bcrypt('alumno')
+        ]);
+        }
 
 
     private static $arrayProductos = array(

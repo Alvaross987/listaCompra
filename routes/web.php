@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'HomeController@getHome');
-
+/*
 Route::get('/login', function () {
     return view('auth.login');
 });
@@ -20,11 +20,24 @@ Route::get('/login', function () {
 Route::get('/logout', function () {
     return view('auth.logout');
 });
+*/
+Route::group(['middleware'=>'auth'],function(){
+Route::group(['prefix' => 'productos'], function(){
 
-Route::get('/productos', 'ProductoController@getIndex');
+Route::get('/', 'ProductoController@getIndex');
 
-Route::get('/productos/show/{id}', 'ProductoController@getShow');
+Route::get('show/{id}', 'ProductoController@getShow');
 
-Route::get('/productos/create', 'ProductoController@getCreate');
+Route::get('create', 'ProductoController@getCreate');
 
-Route::get('/productos/edit/{id}', 'ProductoController@getEdit');
+Route::get('edit/{id}', 'ProductoController@getEdit');
+
+Route::post('create', 'ProductoController@postCreate');
+
+Route::put('edit/{id}', 'ProductoController@putEdit');
+
+});
+});
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');

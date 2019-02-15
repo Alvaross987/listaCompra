@@ -21,6 +21,28 @@ public function getEdit($id){
     return view('productos.edit', array('producto'=>$producto));
 }
 
+public function putEdit(Request $request, $id){
+    $producto = Producto::findOrFail($id);
+    $producto->nombre = $request->nombre;
+    $producto->precio = $request->precio;
+    $producto->categoria = $request->categoria;
+    $producto->imagen = $request->imagen;
+    $producto->descripcion = $request->descripcion;
+    $producto->save();
+    return redirect('/productos/show/' . $producto->id);
+}
+
+public function postCreate(Request $request){
+        $producto = new Producto();
+        $producto->nombre = $request->nombre;
+        $producto->precio = $request->precio;
+        $producto->categoria = $request->categoria;
+        $producto->imagen = $request->imagen;
+        $producto->descripcion = $request->descripcion;
+        $producto->save();
+        return redirect('/productos');
+}
+
     public function getShow($id){
         $productos=Producto::findorFail($id);
     return view('productos.show')

@@ -15,8 +15,8 @@
                         @csrf
 
                         <div class="form-group">
-                            <label for="NProducto">Nombre Producto</label>
-                            <input type="text" name="NProducto" id="NProducto" class="form-control">
+                            <label for="nombre">Nombre Producto</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control">
                         </div>
 
                         <div class="form-group">
