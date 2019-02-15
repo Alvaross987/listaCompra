@@ -28,6 +28,8 @@ Route::get('/', 'ProductoController@getIndex');
 
 Route::get('show/{id}', 'ProductoController@getShow');
 
+Route::put('show/{id}', 'ProductoController@putComprar');
+
 Route::get('create', 'ProductoController@getCreate');
 
 Route::get('edit/{id}', 'ProductoController@getEdit');

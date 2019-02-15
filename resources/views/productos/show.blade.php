@@ -11,20 +11,23 @@
 
     </div>
     <div class="col-sm-8">
-
+    <form action="{{ url('productos/show/' . $producto->id) }}" method="POST">
+    {{method_field('PUT')}}
+                        @csrf
         {{-- TODO: Datos del producto --}}
         <p>Nombre del producto:{{$producto->nombre}}</p>
         <p>Categoria:{{$producto->categoria}}</p>
         @if ($producto->boolean)
         <p>Estado: Producto actualmente comprado</p>
-        <a class="btn btn-success">Comprado</a>
+        <input type="submit" class="btn btn-success" value="Comprado">
         @else
         <p>Estado: Producto actualmente sin comprar</p>
-        <a class="btn btn-danger">Comprar</a>
+        <input type="submit" class="btn btn-danger" value="Comprar">
         @endif
         
         <a class="btn btn-warning" href="{{ url('/productos/edit/' . $producto->id ) }}">Editar producto</a>
         <a class="btn btn-outline-info" href="{{ action('ProductoController@getIndex') }}">Volver al listado</a>
+    </form>
     </div>
 </div>
 

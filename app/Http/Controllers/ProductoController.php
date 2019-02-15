@@ -49,4 +49,16 @@ public function postCreate(Request $request){
     ->with('producto', $productos);
 }
 
+public function putComprar($id){
+    $productos=Producto::findorFail($id);
+    if($productos->boolean){
+        $productos->boolean = false;
+    }else{
+        $productos->boolean = true;
+    }
+    $productos->save();
+    return view('productos.show')
+    ->with('producto', $productos);
+}
+
 }
